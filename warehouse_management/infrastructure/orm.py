@@ -21,6 +21,14 @@ class ProductORM(Base):
     price: Mapped[float] = mapped_column(nullable=False)
 
 
+order_product_associations = Table(
+    'order_product_associations',
+    Base.metadata,
+    Column('order_id', ForeignKey('orders.id')),
+    Column('product_id', ForeignKey('products.id')),
+)
+
+
 class OrderORM(Base):
     """Модель заказа в базе данных."""
 
@@ -28,16 +36,4 @@ class OrderORM(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
-    products: Mapped[list['ProductORM']] = relationship(
-        'ProductORM', secondary='order_product_associations', back_populates='orders'
-    )
-
-
-order_product_associations = Table(
-    'order_product_associations',
-    Base.metadata,
-    Column('order_id', ForeignKey('orders.id'), primary_key=True),
-    Column('product_id', ForeignKey('products.id'), primary_key=True),
-)
-
-OrderORM.products = relationship('ProductORM', secondary=order_product_associations)
+    products = relationship('ProductORM', secondary=order_product_associations)

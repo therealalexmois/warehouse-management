@@ -16,7 +16,7 @@ class ProductRepository(ABC):
         """Добавляет товар в репозиторий.
 
         Args:
-            product (Product): Товар для добавления.
+            product: Товар для добавления.
         """
         pass
 
@@ -25,10 +25,10 @@ class ProductRepository(ABC):
         """Получает товар по его ID.
 
         Args:
-            product_id (int): Идентификатор товара.
+            product_id: Идентификатор товара.
 
         Returns:
-            Product: Найденный товар.
+            Найденный товар.
         """
         pass
 
@@ -37,7 +37,7 @@ class ProductRepository(ABC):
         """Возвращает список всех товаров.
 
         Returns:
-            List[Product]: Список товаров.
+            Список товаров.
         """
         pass
 
@@ -50,7 +50,7 @@ class OrderRepository(ABC):
         """Добавляет заказ в репозиторий.
 
         Args:
-            order (Order): Заказ для добавления.
+            order: Заказ для добавления.
         """
         pass
 
@@ -59,10 +59,10 @@ class OrderRepository(ABC):
         """Получает заказ по его ID.
 
         Args:
-            order_id (int): Идентификатор заказа.
+            order_id: Идентификатор заказа.
 
         Returns:
-            Order: Найденный заказ.
+            Найденный заказ.
         """
         pass
 
@@ -71,6 +71,6 @@ class OrderRepository(ABC):
         """Возвращает список всех заказов.
 
         Returns:
-            List[Order]: Список заказов.
+            Список заказов.
         """
         pass

@@ -17,7 +17,7 @@ class SqlAlchemyUnitOfWork(UnitOfWork):
         """Инициализирует Unit of Work.
 
         Args:
-            session (Session): Экземпляр SQLAlchemy-сессии.
+            session: Экземпляр SQLAlchemy-сессии.
         """
         self.session = session
 
@@ -25,7 +25,7 @@ class SqlAlchemyUnitOfWork(UnitOfWork):
         """Входит в контекстный менеджер Unit of Work.
 
         Returns:
-            Self: Текущий экземпляр Unit of Work.
+            Текущий экземпляр Unit of Work.
         """
         return self
 

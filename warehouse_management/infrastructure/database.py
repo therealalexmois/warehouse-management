@@ -18,10 +18,10 @@ def get_engine(database_url: str = Provide[AppContainer.config.database.url]) ->
     """Создает движок базы данных с использованием зависимости из контейнера.
 
     Args:
-        database_url (str): URL базы данных, полученный из DI-контейнера.
+        database_url: URL базы данных, полученный из DI-контейнера.
 
     Returns:
-        Engine: Экземпляр SQLAlchemy Engine.
+        Экземпляр SQLAlchemy Engine.
     """
     return create_engine(database_url)
 

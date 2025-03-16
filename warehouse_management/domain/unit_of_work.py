@@ -18,7 +18,7 @@ class UnitOfWork(ABC):
         """Начинает контекст управления транзакцией.
 
         Returns:
-            UnitOfWork: Текущий экземпляр Unit of Work.
+            Текущий экземпляр Unit of Work.
         """
         pass
 
@@ -32,9 +32,9 @@ class UnitOfWork(ABC):
         """Завершает контекст управления транзакцией.
 
         Args:
-            exc_type (Type[BaseException] | None): Тип исключения, если оно произошло.
-            exc_val (BaseException | None): Значение исключения.
-            exc_tb (object | None): Трассировка исключения.
+            exc_type: Тип исключения, если оно произошло.
+            exc_val: Значение исключения.
+            exc_tb: Трассировка исключения.
         """
         pass
 

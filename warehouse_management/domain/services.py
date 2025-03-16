@@ -29,13 +29,23 @@ class WarehouseService:
         """Создает новый товар и добавляет его в репозиторий.
 
         Args:
-            name (str): Название товара.
-            quantity (int): Количество товара.
-            price (float): Цена товара.
+            name: Название товара.
+            quantity: Количество товара.
+            price: Цена товара.
 
         Returns:
-            Product: Созданный товар.
+            Созданный товар.
+
+        Raises:
+            ValueError: Если `name` пустой, `quantity` < 0 или `price` < 0.
         """
+        if not name.strip():
+            raise ValueError('Название продукта не может быть пустым')
+        if quantity < 0:
+            raise ValueError('Количество продукта не может быть отрицательным')
+        if price < 0:
+            raise ValueError('Цена продукта не может быть отрицательной')
+
         product = Product(id=None, name=name, quantity=quantity, price=price)
         self.product_repo.add(product)
         return product
@@ -44,10 +54,10 @@ class WarehouseService:
         """Создает новый заказ и добавляет его в репозиторий.
 
         Args:
-            products (List[Product]): Список товаров в заказе.
+            products: Список товаров в заказе.
 
         Returns:
-            Order: Созданный заказ.
+            Созданный заказ.
         """
         order = Order(id=None, products=products)
         self.order_repo.add(order)
