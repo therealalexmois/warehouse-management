@@ -73,3 +73,37 @@ class OrderRepository(ABC):
             Список заказов.
         """
         pass
+
+
+class CustomerRepository(ABC):
+    """Абстрактный репозиторий для управления клиентами."""
+
+    @abstractmethod
+    def add(self, customer: 'Customer') -> None:
+        """Добавляет клиента в репозиторий.
+
+        Args:
+            customer: Клиент для добавления.
+        """
+        pass
+
+    @abstractmethod
+    def get(self, customer_id: int) -> 'Customer':
+        """Получает клиента по его ID.
+
+        Args:
+            customer_id: Идентификатор клиента.
+
+        Returns:
+            Найденный клиент.
+        """
+        pass
+
+    @abstractmethod
+    def list(self) -> list['Customer']:
+        """Возвращает список всех клиентов.
+
+        Returns:
+            Список клиентов.
+        """
+        pass
