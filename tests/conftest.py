@@ -12,6 +12,7 @@ from warehouse_management.infrastructure.unit_of_work import SqlAlchemyUnitOfWor
 if TYPE_CHECKING:
     from collections.abc import Generator
 
+    from pytest_mock import MockFixture
     from sqlalchemy.engine import Engine
 
 
@@ -54,6 +55,18 @@ def order_repo(db_session: 'Session') -> 'SqlAlchemyOrderRepository':
 def unit_of_work(db_session: 'Session') -> 'SqlAlchemyUnitOfWork':
     """Создает тестовый Unit of Work."""
     return SqlAlchemyUnitOfWork(db_session)
+
+
+@pytest.fixture
+def mock_product_repo(mocker: 'MockFixture') -> 'MockFixture':
+    """Создает мок-репозиторий товаров."""
+    return mocker.Mock()
+
+
+@pytest.fixture
+def mock_order_repo(mocker: 'MockFixture') -> 'MockFixture':
+    """Создает мок-репозиторий заказов."""
+    return mocker.Mock()
 
 
 @pytest.fixture(scope='session')
