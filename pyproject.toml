@@ -7,7 +7,7 @@ authors = [
 ]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = ["sqlalchemy==2.0.39", "pydantic-settings (>=2.8.1,<3.0.0)", "dependency-injector (>=4.46.0,<5.0.0)"]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
@@ -17,14 +17,14 @@ build-backend = "poetry.core.masonry.api"
 package-mode = false
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "^4.1.0"
-ruff = "^0.9.10"
-mypy = "^1.15.0"
+pre-commit = "==4.1.0"
+ruff = "==0.9.10"
+mypy = "==1.15.0"
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.3.5"
-pytest-cov = "^6.0.0"
-pytest-mock = "^3.14.0"
+pytest = "==8.3.5"
+pytest-cov = "==6.0.0"
+pytest-mock = "==3.14.0"
 
 [tool.mypy]
 # mypy_path = "src/nginx_log_analyzer"                     # Указывает корневую папку исходного кода
