@@ -5,13 +5,14 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from sqlalchemy.orm import Session
 
+from warehouse_management.domain.exceptions import NotFoundError
 from warehouse_management.domain.models import Order, Product
 from warehouse_management.domain.repositories import OrderRepository, ProductRepository
 from warehouse_management.infrastructure.orm import OrderORM, ProductORM
 
 
 class SqlAlchemyProductRepository(ProductRepository):
-    """Репозиторий для управления товарами через SQLAlchemy."""
+    """Репозиторий для управления товарами."""
 
     def __init__(self, session: 'Session') -> None:
         """Инициализирует репозиторий товаров.
@@ -29,6 +30,8 @@ class SqlAlchemyProductRepository(ProductRepository):
         """
         product_orm = ProductORM(name=product.name, quantity=product.quantity, price=product.price)
         self.session.add(product_orm)
+        self.session.flush()
+        product.id = product_orm.id
 
     def get(self, product_id: int) -> 'Product | None':
         """Получает товар по ID.
@@ -39,17 +42,14 @@ class SqlAlchemyProductRepository(ProductRepository):
         Returns:
             Найденный товар или None, если товар отсутствует.
         """
-        product_orm = self.session.query(ProductORM).filter_by(id=product_id).one_or_none()
-        return (
-            Product(
-                id=product_orm.id,
-                name=product_orm.name,
-                quantity=product_orm.quantity,
-                price=product_orm.price,
-            )
-            if product_orm
-            else None
-        )
+        if product_id < 0:
+            raise ValueError('Product ID must be a positive integer')
+
+        product_orm = self.session.query(ProductORM).filter_by(id=product_id).first()
+        if product_orm is None:
+            raise NotFoundError(f'Product with ID {product_id} not found')
+
+        return Product(id=product_orm.id, name=product_orm.name, quantity=product_orm.quantity, price=product_orm.price)
 
     def list(self) -> list['Product']:
         """Возвращает список всех товаров.

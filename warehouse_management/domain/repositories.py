@@ -7,7 +7,6 @@ if TYPE_CHECKING:
     from warehouse_management.domain.models import Order, Product
 
 
-# TODO: Почему тут используется абстрактный класс, а не Protocol?
 class ProductRepository(ABC):
     """Абстрактный репозиторий для управления товарами."""
 
