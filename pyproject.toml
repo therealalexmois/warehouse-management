@@ -30,6 +30,7 @@ mypy = "==1.15.0"
 pytest = "==8.3.5"
 pytest-cov = "==6.0.0"
 pytest-mock = "==3.14.0"
+pytest-docker = "==3.2.0"
 
 [tool.mypy]
 # mypy_path = "src/nginx_log_analyzer"                     # Указывает корневую папку исходного кода
