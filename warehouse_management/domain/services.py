@@ -8,7 +8,6 @@ if TYPE_CHECKING:
     from warehouse_management.domain.repositories import OrderRepository, ProductRepository
 
 
-# TODO: Почему этот модуль находится на слое domain, а не на слое application?
 class WarehouseService:
     """Сервис управления складом.
 
