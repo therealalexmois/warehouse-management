@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  sqlite:
+    image: nouchka/sqlite3
+    container_name: warehouse_sqlite
+    volumes:
+      - ./db:/root/db
+    working_dir: /root/db
+    command: sqlite3 warehouse.db
+    ports:
+      - "5432:5432"
