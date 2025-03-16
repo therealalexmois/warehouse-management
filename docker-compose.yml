@@ -2,11 +2,12 @@ version: '3.8'
 
 services:
   sqlite:
-    image: nouchka/sqlite3
+    image: keinos/sqlite3
     container_name: warehouse_sqlite
-    volumes:
-      - ./db:/root/db
-    working_dir: /root/db
-    command: sqlite3 warehouse.db
+    platform: linux/amd64
     ports:
-      - "5432:5432"
+      - "8191:8191"
+    volumes:
+      - ./db:/db
+    working_dir: /workspace
+    command: ["tail", "-f", "/dev/null"]
