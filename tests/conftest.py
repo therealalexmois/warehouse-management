@@ -2,7 +2,7 @@ import os
 from typing import TYPE_CHECKING
 
 import pytest
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session, sessionmaker
 
 from warehouse_management.infrastructure.orm import Base
@@ -29,8 +29,12 @@ def in_memory_db() -> 'Generator[Engine]':
 def db_session(in_memory_db: 'Engine') -> 'Generator[Session]':
     """Создает новую сессию базы данных для теста."""
     connection = in_memory_db.connect()
-    transaction = connection.begin()
+
+    with connection.begin():
+        connection.execute(text('PRAGMA foreign_keys = ON;'))
+
     session = sessionmaker(bind=connection)()
+    transaction = connection.begin_nested()
 
     yield session
 
