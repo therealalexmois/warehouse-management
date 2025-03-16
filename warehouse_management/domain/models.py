@@ -23,14 +23,22 @@ class Product:
 
 @dataclass
 class Order:
-    """Модель заказа, содержащая список товаров.
+    """Модель заказа, содержащая список товаров или единичный товар.
 
     Attributes:
         id: Уникальный идентификатор заказа (может быть None перед сохранением в БД).
-        products: Список товаров в заказе.
+        customer_id: ID клиента, оформившего заказ (может быть None).
+        product: Название товара (если заказ содержит один товар).
+        quantity: Количество единиц товара в заказе.
+        price: Цена товара.
+        products: Список товаров (если заказ содержит несколько товаров).
     """
 
     id: int | None
+    customer_id: int | None
+    product: str | None = None
+    quantity: int | None = None
+    price: float | None = None
     products: list[Product] = field(default_factory=list)
 
     def add_product(self, product: Product) -> None:
@@ -47,7 +55,13 @@ class Order:
         Returns:
             Общая стоимость заказа.
         """
-        return sum(product.price * product.quantity for product in self.products)
+        if self.products:
+            return sum(product.price * product.quantity for product in self.products)
+
+        if self.product and self.quantity and self.price:
+            return self.quantity * self.price
+
+        return 0.0
 
 
 @dataclass
