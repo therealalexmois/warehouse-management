@@ -1,7 +1,7 @@
 """Настройка параметров приложения с помощью Pydantic.
 
-Этот модуль определяет класс `Settings`, который загружает конфигурацию из переменных окружения
-переменных и дополнительного файла `.env.local` для локальной разработки.ariables and an optional `.env.local` file for local development.
+Модуль определяет класс `Settings`, который загружает конфигурацию из переменных окружения
+и файла `.env.local` для локальной разработки.ariables and an optional `.env.local` file for local development.
 """
 
 import os
