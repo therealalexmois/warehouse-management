@@ -36,7 +36,6 @@ class WarehouseService:
         Returns:
             Product: Созданный товар.
         """
-        # TODO: id не может быть None (нужно создать логику генерации ID)
         product = Product(id=None, name=name, quantity=quantity, price=price)
         self.product_repo.add(product)
         return product
@@ -50,7 +49,6 @@ class WarehouseService:
         Returns:
             Order: Созданный заказ.
         """
-        # TODO: id не может быть None (нужно создать логику генерации ID)
         order = Order(id=None, products=products)
         self.order_repo.add(order)
         return order
