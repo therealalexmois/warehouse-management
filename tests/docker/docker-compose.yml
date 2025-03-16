@@ -1,8 +1,9 @@
 version: '3.8'
 
 services:
-  memcached:
-    image: memcached:latest
-    container_name: test_memcached
-    ports:
-      - "11211:11211"
+  test_sqlite:
+    image: keinos/sqlite3
+    container_name: test_sqlite
+    command: tail -f /dev/null
+    volumes:
+      - ./db:/data
