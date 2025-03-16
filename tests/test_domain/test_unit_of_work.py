@@ -65,5 +65,4 @@ def test_unit_of_work__context_manager(mock_unit_of_work: 'UnitOfWork') -> None:
     with pytest.raises(RuntimeError), mock_unit_of_work:
         raise RuntimeError('Ошибка внутри транзакции')
 
-    # ✅ Now rollback() is properly called
     mock_unit_of_work.rollback.assert_called_once()
